@@ -20,7 +20,7 @@ class Item(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     price = models.FloatField()
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE , related_name='items')
 
     def get_absolute_url(self):
         return reverse('restaurant-detail' ,kwargs={'restaurant_id':self.id})

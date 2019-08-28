@@ -51,9 +51,10 @@ def restaurant_list(request):
 
 def restaurant_detail(request, restaurant_id):
     restaurant_obj = Restaurant.objects.get(id=restaurant_id)
-    context = {
-        "restaurant": Restaurant.objects.get(id=restaurant_id),
-        "items":Item.objects.filter(restaurant= restaurant_id),
+    context = { 
+        # "items":Item.objects.filter(restaurant= restaurant_id), #one-way the long and not that smart 
+        "items" : restaurant_obj.items.all(), #better using related_name from the model
+        "restaurant": restaurant_obj, # Even better you can this object only to display item in html using "related_name" from model 
     }
     return render(request, 'detail.html', context)
 

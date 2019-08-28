@@ -15,16 +15,16 @@
     <p class="card-text">{{restaurant.description|linebreaks}}</p>
     <p class="card-text">Opening Time: {{restaurant.opening_time}}</p>
     <p class="card-text">Closing Time: {{restaurant.closing_time}}</p>
-    <div class="row text-center">
-    {% for item in items %}
-      <div class="col-md-6">
-      {{item.name}}
-      {{item.description}}
-      {{item.price}}
-      {{restaurant.owner}}
-      <br>
-      </div>
+    <p class="card-text">Items: <br>
+    {% for item in items %} 
+    {# you can use restaurant "from the context" to like this #} 
+    {# {{ for item in restaurant.items.all }} because you have related_name #}
+      {{item.name}} - {{item.description}} - {{item.price}} - {{restaurant.owner}} <br>
+
     {% endfor %}
+
+    <div class="row text-center">
+
 
         <div class="col-md-6">
             <a href="{% url 'restaurant-update' restaurant.id %}" class="btn btn-outline-primary btn-block">Update</a>
